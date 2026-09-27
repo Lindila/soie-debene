@@ -1,0 +1,17 @@
+{
+  "name": "boutique",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,site -c yellow,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "db:setup": "npm run db:setup -w server",
+    "build": "npm run build -w client",
+    "start": "npm start -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

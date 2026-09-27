@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Jost', system-ui, sans-serif;
+
+  --color-cream: #faf6f1;
+  --color-sand: #f1e8de;
+  --color-blush: #e8d5c7;
+  --color-espresso: #2b1d16;
+  --color-cocoa: #5c4033;
+  --color-taupe: #8a7566;
+  --color-gold: #b8894d;
+  --color-gold-light: #d4a86a;
+  --color-whatsapp: #25d366;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-cream font-sans text-espresso antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+  }
+  ::selection {
+    @apply bg-blush;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium tracking-wide transition duration-300 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@layer components {
+  .btn-dark {
+    @apply btn bg-espresso text-cream hover:bg-cocoa;
+  }
+  .btn-light {
+    @apply btn border border-espresso/20 bg-white/70 text-espresso backdrop-blur hover:border-espresso hover:bg-white;
+  }
+  .btn-whatsapp {
+    @apply btn bg-whatsapp text-white hover:brightness-95;
+  }
+  .eyebrow {
+    @apply text-xs font-medium tracking-[0.25em] text-gold uppercase;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .field {
+    @apply w-full rounded-xl border border-espresso/15 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-taupe/70 focus:border-gold focus:ring-2 focus:ring-gold/20;
+  }
+}
