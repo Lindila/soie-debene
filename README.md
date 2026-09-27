@@ -37,9 +37,9 @@ Une commande ne passe « payée » que lorsque le serveur l'a vérifié directem
 
 ## Mise en ligne (Vercel + Neon)
 
-1. Sur vercel.com, choisis « Continue with GitHub », puis **Add New → Project** et importe . Ne touche à aucun réglage, puis clique sur **Deploy**. Le site s'affiche, mais sans produits.
-2. Dans le projet, ouvre **Storage → Create Database → Neon**, puis **Connect**. Vercel ajoute  tout seul.
+1. Sur vercel.com, choisis « Continue with GitHub », puis **Add New → Project** et importe `soie-debene`. Ne touche à aucun réglage, puis clique sur **Deploy**. Le site s'affiche, mais sans produits.
+2. Dans le projet, ouvre **Storage → Create Database → Neon**, puis **Connect**. Vercel ajoute `DATABASE_URL` tout seul.
 3. Ouvre **Deployments → ⋯ → Redeploy**. La base est créée et le catalogue chargé.
 4. Plus tard, ajoute les clés de paiement dans **Settings → Environment Variables**, puis redéploie.
 
-Alternative :  permet de tout déployer sur Render (Blueprint).
+Alternative : `render.yaml` permet de tout déployer sur Render (Blueprint).
