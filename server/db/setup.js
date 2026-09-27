@@ -4,8 +4,15 @@
  * Sans danger à relancer : rien n'est supprimé ni écrasé.
  */
 import { readFile } from 'node:fs/promises'
-import { pool, withTransaction } from '../src/db.js'
 import { categories, products, variantsOf } from './catalog.js'
+
+// Premier déploiement Vercel, avant d'avoir branché Neon : on n'empêche pas la
+// mise en ligne du site, on prévient juste.
+if (!process.env.DATABASE_URL) {
+  console.warn('⚠ DATABASE_URL absent : base non initialisée. Branche Neon puis redéploie.')
+  process.exit(0)
+}
+const { pool, withTransaction } = await import('../src/db.js')
 
 const schema = await readFile(new URL('./schema.sql', import.meta.url), 'utf8')
 await pool.query(schema)

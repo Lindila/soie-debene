@@ -35,14 +35,11 @@ Une commande ne passe « payée » que lorsque le serveur l'a vérifié directem
 - Stripe : `https://TON-API/api/webhooks/stripe` (événements `checkout.session.*`), puis mets le secret dans `STRIPE_WEBHOOK_SECRET`.
 - NotchPay : `https://TON-API/api/webhooks/notchpay`, puis mets la « hash key » dans `NOTCHPAY_WEBHOOK_HASH`.
 
-## Mise en ligne
+## Mise en ligne (Vercel + Neon)
 
-1. **Base de données** : crée une base PostgreSQL gratuite sur neon.tech. Mets son URL dans `DATABASE_URL`, puis lance `npm run db:setup`.
-2. **API** : déploie sur Railway ou Render.
-   - Dossier racine : `server`
-   - Commande de démarrage : `npm start`
-   - Variables d'environnement : celles de `server/.env`, avec `CLIENT_URL` = l'adresse du site.
-3. **Site** : déploie sur Vercel.
-   - Dossier racine : `client`
-   - Variable d'environnement : `VITE_API_URL` = l'adresse de l'API.
-4. **Nom de domaine** : ajoute-le dans Vercel.
+1. Sur vercel.com, choisis « Continue with GitHub », puis **Add New → Project** et importe . Ne touche à aucun réglage, puis clique sur **Deploy**. Le site s'affiche, mais sans produits.
+2. Dans le projet, ouvre **Storage → Create Database → Neon**, puis **Connect**. Vercel ajoute  tout seul.
+3. Ouvre **Deployments → ⋯ → Redeploy**. La base est créée et le catalogue chargé.
+4. Plus tard, ajoute les clés de paiement dans **Settings → Environment Variables**, puis redéploie.
+
+Alternative :  permet de tout déployer sur Render (Blueprint).
