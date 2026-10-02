@@ -10,8 +10,8 @@ export default function Footer() {
         <div className="md:col-span-2">
           <p className="font-serif text-3xl font-semibold">{BRAND.name}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/70">
-            Tissages, perruques et mèches en cheveux 100 % naturels, sélectionnés pour leur qualité et leur tenue.
-            Livraison en Europe et au Cameroun.
+            Perruques et tissages en cheveux humains 100 % naturels, sélectionnés pour leur qualité et leur tenue.
+            Livraison au Cameroun et en Europe.
           </p>
           <div className="mt-6 flex gap-3">
             <a
@@ -51,10 +51,9 @@ export default function Footer() {
         <div>
           <p className="eyebrow mb-5">Boutique</p>
           <ul className="space-y-3 text-sm text-cream/75">
-            <li><Link to="/boutique?categorie=tissages" className="hover:text-gold">Tissages</Link></li>
             <li><Link to="/boutique?categorie=perruques" className="hover:text-gold">Perruques</Link></li>
-            <li><Link to="/boutique?categorie=closures-frontals" className="hover:text-gold">Closures & Frontals</Link></li>
-            <li><Link to="/boutique?categorie=meches-a-tresser" className="hover:text-gold">Mèches à tresser</Link></li>
+            <li><Link to="/boutique?categorie=tissages" className="hover:text-gold">Tissages</Link></li>
+            <li><Link to="/boutique" className="hover:text-gold">Toute la collection</Link></li>
           </ul>
         </div>
         <div>

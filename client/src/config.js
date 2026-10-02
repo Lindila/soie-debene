@@ -3,9 +3,9 @@
  * Remplace ces valeurs par les tiennes.
  */
 export const BRAND = {
-  name: 'Soie d’Ébène',
+  name: 'Human Hair',
   tagline: 'Cheveux 100 % naturels',
-  hashtag: 'SoieDEbene',
+  hashtag: 'HumanHairShop',
   // Numéro WhatsApp au format international, sans + ni espaces (ex. 237 6XX XX XX XX)
   whatsapp: '237657631817',
   email: 'nonoyvana92@gmail.com',

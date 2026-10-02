@@ -1,7 +1,8 @@
 /**
  * Crée les tables puis charge le catalogue si la base est vide.
- *   npm run db:setup
- * Sans danger à relancer : rien n'est supprimé ni écrasé.
+ *   npm run db:setup              sans danger à relancer, rien n'est écrasé
+ *   npm run db:setup -- --reset   remplace le catalogue par catalog.js
+ *                                 (les commandes passées sont conservées)
  */
 import { readFile } from 'node:fs/promises'
 import { categories, products, variantsOf } from './catalog.js'
@@ -18,11 +19,18 @@ const schema = await readFile(new URL('./schema.sql', import.meta.url), 'utf8')
 await pool.query(schema)
 console.log('✔ Tables prêtes')
 
+const reset = process.argv.includes('--reset')
 const { rows } = await pool.query('SELECT count(*)::int AS n FROM products')
-if (rows[0].n > 0) {
+if (rows[0].n > 0 && !reset) {
   console.log(`✔ Catalogue déjà présent (${rows[0].n} produits), rien à faire`)
 } else {
   await withTransaction(async (db) => {
+    if (reset) {
+      // Les lignes de commande gardent leur nom et prix ; leur lien vers la variante passe à NULL.
+      await db.query('DELETE FROM products')
+      await db.query('DELETE FROM categories')
+      console.log('✔ Ancien catalogue supprimé')
+    }
     const categoryIds = {}
     for (const [position, c] of categories.entries()) {
       const { rows } = await db.query(

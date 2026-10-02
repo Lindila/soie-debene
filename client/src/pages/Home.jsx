@@ -8,13 +8,20 @@ import ProductCard from '../components/ProductCard.jsx'
 import { WhatsAppIcon } from '../components/WhatsAppFloat.jsx'
 
 const TEXTURES = [
-  { name: 'Lisse', image: '/images/lisse-2.jpg', slug: 'tissage-bresilien-lisse' },
-  { name: 'Body Wave', image: '/images/body-wave-2.jpg', slug: 'tissage-body-wave' },
-  { name: 'Deep Wave', image: '/images/deep-wave-2.jpg', slug: 'tissage-deep-wave' },
-  { name: 'Kinky Curly', image: '/images/kinky-1.jpg', slug: 'tissage-kinky-curly' },
+  { name: 'Lisse', image: '/images/perruque-lisse-longue-1.jpg', slug: 'perruque-lisse-lace-frontal' },
+  { name: 'Water Wave', image: '/images/perruque-water-wave-1.jpg', slug: 'perruque-bob-water-wave' },
+  { name: 'Deep Curly', image: '/images/perruque-deep-curly-1.jpg', slug: 'perruque-deep-curly' },
+  { name: 'Ombré bordeaux', image: '/images/perruque-bob-bordeaux-1.jpg', slug: 'perruque-bob-ombre-bordeaux' },
 ]
 
-const GALLERY = [1, 2, 3, 4, 5, 6].map((n) => `/images/galerie-${n}.jpg`)
+const GALLERY = [
+  '/images/perruque-water-wave-2.jpg',
+  '/images/tissage-curly-main.jpg',
+  '/images/perruque-bob-lisse-1.jpg',
+  '/images/perruque-water-wave-4.jpg',
+  '/images/perruque-lisse-longue-2.jpg',
+  '/images/perruque-water-wave-3.jpg',
+]
 
 export default function Home() {
   const { market } = useShop()
@@ -52,7 +59,7 @@ export default function Home() {
               Des cheveux qui te <em className="text-gold">ressemblent</em>.
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-cocoa sm:text-lg">
-              Tissages, perruques lace et closures en cheveux 100 % naturels. Brillants, doux, et faits pour durer
+              Perruques lace et tissages en cheveux humains 100 % naturels. Brillants, doux, et faits pour durer
               plus d’un an.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -75,8 +82,8 @@ export default function Home() {
               </span>
               <span className="h-10 w-px bg-espresso/15" />
               <span>
-                <strong className="block font-serif text-3xl font-medium text-espresso">10 → 30"</strong>
-                toutes les longueurs
+                <strong className="block font-serif text-3xl font-medium text-espresso">8 → 30"</strong>
+                du bob au très long
               </span>
             </div>
           </div>
@@ -85,18 +92,30 @@ export default function Home() {
             <div className="absolute -top-10 -right-24 h-[120%] w-[85%] rounded-full bg-blush/60 blur-3xl" />
             <div className="relative grid grid-cols-12 gap-4">
               <div className="col-span-8 col-start-2 aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl shadow-espresso/20 lg:col-span-8 lg:col-start-4">
-                <img
-                  src="/images/hero-body-wave.jpg"
-                  alt="Femme portant un tissage body wave"
-                  className="h-full w-full object-cover"
+                <video
+                  src="/hero.mp4"
+                  poster="/images/perruque-deep-curly-1.jpg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-label="Déballage de paquets de cheveux naturels"
+                  className="h-full w-full object-cover object-top"
                 />
               </div>
-              <div className="absolute bottom-[-6%] left-0 w-[38%] overflow-hidden rounded-3xl border-6 border-cream shadow-xl lg:left-[6%] lg:w-[34%]">
-                <img src="/images/deep-wave-1.jpg" alt="" className="aspect-[4/5] w-full object-cover" />
-              </div>
+              <Link
+                to="/produit/perruque-bob-ombre-bordeaux"
+                className="absolute bottom-[-6%] left-0 w-[38%] overflow-hidden rounded-3xl border-6 border-cream shadow-xl lg:left-[6%] lg:w-[34%]"
+              >
+                <img
+                  src="/images/perruque-bob-bordeaux-1.jpg"
+                  alt="Perruque bob ombré bordeaux"
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              </Link>
               <div className="absolute top-[8%] right-0 rounded-2xl bg-cream/95 px-5 py-4 shadow-lg backdrop-blur sm:right-[4%]">
-                <p className="text-[10px] tracking-[0.2em] text-taupe uppercase">Texture star</p>
-                <p className="font-serif text-xl">Body Wave</p>
+                <p className="text-[10px] tracking-[0.2em] text-taupe uppercase">Tendance</p>
+                <p className="font-serif text-xl">Bob ombré bordeaux</p>
               </div>
             </div>
           </div>
@@ -129,12 +148,21 @@ export default function Home() {
             Tout voir <ArrowRight size={16} />
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
-          {categories.map((c) => (
+        <div className="grid gap-4 sm:grid-cols-3 lg:gap-6">
+          {[
+            ...categories.map((c) => ({ ...c, to: `/boutique?categorie=${c.slug}` })),
+            {
+              slug: 'showroom',
+              name: 'Notre showroom',
+              tagline: 'Plus de 100 perruques en exposition, viens les essayer',
+              image: '/images/showroom-1.jpg',
+              to: '/contact',
+            },
+          ].map((c) => (
             <Link
               key={c.slug}
-              to={`/boutique?categorie=${c.slug}`}
-              className="group relative aspect-[3/4] overflow-hidden rounded-2xl"
+              to={c.to}
+              className="group relative aspect-[4/5] overflow-hidden rounded-2xl sm:aspect-[3/4]"
             >
               <img
                 src={c.image}
@@ -180,7 +208,7 @@ export default function Home() {
             <p className="eyebrow">Guide des textures</p>
             <h2 className="mt-3 text-4xl sm:text-5xl">Quelle texture pour toi ?</h2>
             <p className="mx-auto mt-4 max-w-lg text-cocoa">
-              Du lisse soyeux à la boucle afro, chaque texture existe de 10 à 30 pouces.
+              Du lisse soyeux aux boucles profondes, du bob au très long.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-4">
@@ -226,8 +254,8 @@ export default function Home() {
           </div>
           <div className="relative min-h-80">
             <img
-              src="/images/tresses-3.jpg"
-              alt=""
+              src="/images/tissages-rayon.jpg"
+              alt="Rayon de tissages en cheveux naturels"
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />

@@ -1,226 +1,144 @@
 /**
- * Catalogue de départ. Les prix sont indicatifs : EUR en centimes, XAF en
- * francs CFA. Modifie-les ici avant `npm run db:setup`, ou directement en base.
+ * Catalogue Human Hair. Les prix sont provisoires : EUR en centimes, XAF en
+ * francs CFA. Après modification : `npm run db:setup -- --reset`.
  */
 
 const inches = (from, to) =>
   Array.from({ length: (to - from) / 2 + 1 }, (_, i) => `${from + i * 2}"`)
 
-const NATURAL = 'Noir naturel (1B)'
-const BLOND = 'Blond miel (613)'
-
 /** Prix EUR → XAF, arrondi à 500 FCFA. */
 const toXaf = (cents) => Math.round((cents / 100) * 655.957 / 500) * 500
 
+const length = (o) => parseInt(o.Longueur)
+
 export const categories = [
-  {
-    slug: 'tissages',
-    name: 'Tissages',
-    tagline: 'Paquets 100 % naturels, du lisse au bouclé',
-    image: '/images/hero-body-wave.jpg',
-  },
   {
     slug: 'perruques',
     name: 'Perruques',
-    tagline: 'Lace frontales prêtes à porter',
-    image: '/images/perruque-lisse-1.jpg',
+    tagline: 'Lace wigs prêtes à porter, du bob au très long',
+    image: '/images/perruque-deep-curly-1.jpg',
   },
   {
-    slug: 'closures-frontals',
-    name: 'Closures & Frontals',
-    tagline: 'Pour une raie naturelle et invisible',
-    image: '/images/closure-1.jpg',
-  },
-  {
-    slug: 'meches-a-tresser',
-    name: 'Mèches à tresser',
-    tagline: 'Box braids, knotless, twists',
-    image: '/images/tresses-1.jpg',
+    slug: 'tissages',
+    name: 'Tissages',
+    tagline: 'Paquets de cheveux naturels, toutes longueurs',
+    image: '/images/tissages-rayon.jpg',
   },
 ]
 
-/**
- * `price(options)` renvoie le prix en centimes d'euro de la variante ; le prix
- * en francs CFA en est déduit.
- */
+/** `price(options)` renvoie le prix en centimes d'euro ; le prix FCFA en est déduit. */
 export const products = [
   {
-    slug: 'tissage-bresilien-lisse',
-    name: 'Tissage Brésilien Lisse',
-    category: 'tissages',
+    slug: 'perruque-lisse-lace-frontal',
+    name: 'Perruque Lisse Lace Frontal 13x4',
+    category: 'perruques',
     texture: 'Lisse',
     badge: 'Best-seller',
     featured: true,
-    images: ['/images/lisse-1.jpg', '/images/lisse-2.jpg', '/images/lisse-3.jpg'],
+    images: ['/images/perruque-lisse-longue-1.jpg', '/images/perruque-lisse-longue-2.jpg'],
     description:
-      'Un lisse soyeux et brillant qui bouge avec naturel. Cheveux humains Remy, cuticules alignées : pas de nœuds, pas de frisottis, et une tenue de 12 mois et plus avec un bon entretien.',
+      'Un lisse long, brillant et fluide, avec une lace frontale transparente qui se fond sur le front pour une naissance des cheveux naturelle. Se porte raie au milieu ou sur le côté.',
     details: [
-      'Cheveux humains 100 % Remy, non traités',
-      'Paquet de 100 g, trame double',
-      'Se lisse, se boucle et se colore',
-      'Comptez 3 paquets pour une tête complète',
+      'Cheveux humains 100 % naturels',
+      'Lace frontale transparente 13x4, pré-épilée',
+      'Bonnet ajustable avec sangle élastique',
+      'Peut être lissée, bouclée et coiffée',
     ],
-    options: { Longueur: inches(10, 30), Couleur: [NATURAL, BLOND] },
-    price: (o) => 3500 + (parseInt(o.Longueur) - 10) * 400 + (o.Couleur === BLOND ? 1500 : 0),
+    options: { Longueur: inches(16, 30), Densité: ['180 %', '250 %'] },
+    price: (o) => 15900 + (length(o) - 16) * 1000 + (o.Densité === '250 %' ? 3000 : 0),
   },
   {
-    slug: 'tissage-body-wave',
-    name: 'Tissage Body Wave',
-    category: 'tissages',
-    texture: 'Body Wave',
+    slug: 'perruque-deep-curly',
+    name: 'Perruque Deep Curly',
+    category: 'perruques',
+    texture: 'Deep Curly',
     badge: 'Nouveau',
     featured: true,
-    images: ['/images/hero-body-wave.jpg', '/images/body-wave-2.jpg'],
+    images: ['/images/perruque-deep-curly-1.jpg'],
     description:
-      'Des ondulations souples et un volume qui dure toute la journée. La texture la plus polyvalente : elle se porte détachée, en chignon ou lissée.',
+      'Des boucles profondes, denses et rebondies pour un volume glamour du matin au soir. Lace HD pour une raie naturelle et invisible.',
     details: [
-      'Cheveux humains 100 % Remy',
-      'Paquet de 100 g, trame double',
-      'Ondulation qui revient après lavage',
-      'Comptez 3 paquets pour une tête complète',
+      'Cheveux humains 100 % naturels',
+      'Lace HD 13x4',
+      'Boucles définies qui tiennent après lavage',
+      'Bonnet ajustable',
     ],
-    options: { Longueur: inches(10, 30), Couleur: [NATURAL, BLOND] },
-    price: (o) => 3800 + (parseInt(o.Longueur) - 10) * 400 + (o.Couleur === BLOND ? 1500 : 0),
+    options: { Longueur: inches(14, 24), Densité: ['180 %', '250 %'] },
+    price: (o) => 16900 + (length(o) - 14) * 1000 + (o.Densité === '250 %' ? 3000 : 0),
   },
   {
-    slug: 'tissage-deep-wave',
-    name: 'Tissage Deep Wave',
-    category: 'tissages',
-    texture: 'Deep Wave',
-    featured: true,
-    images: ['/images/deep-wave-1.jpg', '/images/deep-wave-2.jpg'],
-    description:
-      'Des boucles profondes, rebondies et bien définies. Un rendu glamour qui garde sa forme lavage après lavage.',
-    details: [
-      'Cheveux humains 100 % Remy',
-      'Paquet de 100 g, trame double',
-      'Boucles définies, sans produit',
-      'Comptez 3 à 4 paquets pour une tête complète',
-    ],
-    options: { Longueur: inches(10, 30) },
-    price: (o) => 4000 + (parseInt(o.Longueur) - 10) * 400,
-  },
-  {
-    slug: 'tissage-kinky-curly',
-    name: 'Tissage Kinky Curly',
-    category: 'tissages',
-    texture: 'Kinky Curly',
-    featured: true,
-    images: ['/images/kinky-1.jpg', '/images/kinky-2.jpg', '/images/kinky-3.jpg'],
-    description:
-      'Une boucle afro serrée qui se fond avec les cheveux naturels crépus. Pour un volume généreux et une allure 100 % naturelle.',
-    details: [
-      'Cheveux humains 100 % Remy',
-      'Paquet de 100 g, trame double',
-      'Se fond avec les cheveux crépus type 4',
-      'Comptez 3 paquets pour une tête complète',
-    ],
-    options: { Longueur: inches(10, 24) },
-    price: (o) => 4200 + (parseInt(o.Longueur) - 10) * 400,
-  },
-  {
-    slug: 'perruque-lace-frontal-lisse',
-    name: 'Perruque Lace Frontal 13x4 Lisse',
+    slug: 'perruque-bob-water-wave',
+    name: 'Perruque Bob Water Wave',
     category: 'perruques',
-    texture: 'Lisse',
+    texture: 'Water Wave',
     badge: 'Best-seller',
     featured: true,
-    images: ['/images/perruque-lisse-1.jpg', '/images/lisse-3.jpg'],
+    images: ['/images/perruque-water-wave-1.jpg', '/images/perruque-water-wave-2.jpg', '/images/perruque-water-wave-3.jpg', '/images/perruque-water-wave-4.jpg'],
     description:
-      'Prête à porter en 10 minutes. Lace frontale HD 13x4 pré-épilée, naissance des cheveux naturelle, bonnet ajustable avec sangle élastique.',
+      'Le bob bouclé qui va à tout le monde : léger, frais, plein de mouvement. Idéal au quotidien, facile à entretenir.',
     details: [
-      'Cheveux humains 100 % Remy',
-      'Lace HD 13x4, pré-épilée, nœuds décolorés',
-      'Bonnet taille M ajustable (54 – 58 cm)',
-      'Peut être coiffée, lissée et bouclée',
+      'Cheveux humains 100 % naturels',
+      'Lace 4x4 transparente',
+      'Boucles water wave naturelles',
+      'Bonnet ajustable',
     ],
-    options: { Longueur: inches(14, 26), Densité: ['150 %', '180 %'] },
-    price: (o) => 14900 + (parseInt(o.Longueur) - 14) * 900 + (o.Densité === '180 %' ? 2500 : 0),
+    options: { Longueur: inches(10, 16) },
+    price: (o) => 9900 + (length(o) - 10) * 800,
   },
   {
-    slug: 'perruque-lisse-frange',
-    name: 'Perruque Lisse à Frange',
+    slug: 'perruque-bob-lisse-4x4',
+    name: 'Perruque Bob Lisse 4x4',
     category: 'perruques',
     texture: 'Lisse',
-    images: ['/images/perruque-frange.jpg'],
+    featured: true,
+    images: ['/images/perruque-bob-lisse-1.jpg', '/images/perruque-bob-lisse-2.jpg'],
     description:
-      'Sans colle, sans lace à couper : une perruque à frange qui s’enfile et se porte immédiatement. Idéale pour débuter.',
+      'Un carré lisse net et élégant, coupé droit. Lace 4x4 pour une raie au milieu impeccable. Le classique chic, prêt en 5 minutes.',
     details: [
-      'Cheveux humains 100 % Remy',
-      'Sans colle (glueless), frange prédécoupée',
-      'Bonnet taille M ajustable',
+      'Cheveux humains 100 % naturels',
+      'Lace 4x4 transparente',
+      'Coupe droite, finition nette',
+      'Bonnet ajustable',
     ],
-    options: { Longueur: inches(10, 20) },
-    price: (o) => 9900 + (parseInt(o.Longueur) - 10) * 700,
+    options: { Longueur: inches(8, 14) },
+    price: (o) => 8900 + (length(o) - 8) * 700,
   },
   {
-    slug: 'perruque-afro-kinky',
-    name: 'Perruque Afro Kinky',
+    slug: 'perruque-bob-ombre-bordeaux',
+    name: 'Perruque Bob Ombré Bordeaux',
     category: 'perruques',
-    texture: 'Kinky Curly',
-    badge: 'Nouveau',
+    texture: 'Lisse · Couleur 1B/99J',
+    badge: 'Tendance',
     featured: true,
-    images: ['/images/perruque-afro.jpg', '/images/kinky-3.jpg'],
+    images: ['/images/perruque-bob-bordeaux-1.jpg'],
     description:
-      'Un afro volumineux et naturel, lace 4x4 pour une raie discrète. Le look d’un vrai afro, sans les heures de coiffage.',
+      'Racines foncées et longueurs bordeaux profond : un ombré tendance qui illumine le teint. Lace frontale transparente pour une naissance des cheveux parfaite.',
     details: [
-      'Cheveux humains 100 % Remy',
-      'Lace transparente 4x4',
-      'Densité 200 %, volume généreux',
+      'Cheveux humains 100 % naturels, coloration 1B/99J',
+      'Lace frontale transparente 13x4',
+      'Coupe bob asymétrique',
+      'Bonnet ajustable',
     ],
-    options: { Longueur: inches(12, 18) },
-    price: (o) => 15900 + (parseInt(o.Longueur) - 12) * 900,
+    options: { Longueur: inches(10, 14) },
+    price: (o) => 11900 + (length(o) - 10) * 800,
   },
   {
-    slug: 'closure-4x4-lisse',
-    name: 'Closure 4x4 Lisse',
-    category: 'closures-frontals',
-    texture: 'Lisse',
-    images: ['/images/closure-1.jpg'],
-    description:
-      'Termine ton tissage avec une raie naturelle, sans laisser de cheveux dehors. Raie libre : au milieu, sur le côté, comme tu veux.',
-    details: [
-      'Cheveux humains 100 % Remy',
-      'Lace 4x4, raie libre',
-      'Se marie avec nos tissages lisses',
-    ],
-    options: { Longueur: inches(10, 20), 'Type de lace': ['Transparente', 'HD'] },
-    price: (o) => 3900 + (parseInt(o.Longueur) - 10) * 300 + (o['Type de lace'] === 'HD' ? 1500 : 0),
-  },
-  {
-    slug: 'frontal-13x4-body-wave',
-    name: 'Frontal 13x4 Body Wave',
-    category: 'closures-frontals',
-    texture: 'Body Wave',
-    images: ['/images/frontal-1.jpg'],
-    description:
-      'Une frontale d’oreille à oreille pour coiffer les cheveux en arrière ou en queue de cheval, avec une naissance des cheveux invisible.',
-    details: [
-      'Cheveux humains 100 % Remy',
-      'Lace 13x4, pré-épilée',
-      'Se marie avec nos tissages body wave',
-    ],
-    options: { Longueur: inches(12, 20), 'Type de lace': ['Transparente', 'HD'] },
-    price: (o) => 5900 + (parseInt(o.Longueur) - 12) * 400 + (o['Type de lace'] === 'HD' ? 2000 : 0),
-  },
-  {
-    slug: 'meches-tresses-pre-etirees',
-    name: 'Mèches à tresser pré-étirées',
-    category: 'meches-a-tresser',
-    texture: 'Tresses',
-    badge: 'Best-seller',
+    slug: 'tissage-curly',
+    name: 'Tissage Curly',
+    category: 'tissages',
+    texture: 'Curly',
     featured: true,
-    images: ['/images/tresses-1.jpg', '/images/tresses-2.jpg', '/images/tresses-3.jpg'],
+    images: ['/images/tissage-curly-main.jpg', '/images/tissages-rayon.jpg'],
     description:
-      'Des pointes déjà effilées pour des tresses nettes en moins de temps. Légères, douces, sans démangeaisons grâce au traitement anti-irritation.',
+      'Des boucles généreuses et souples, en paquets de cheveux naturels. Pour un tissage, une perruque sur mesure ou un rajout de volume.',
     details: [
-      'Fibre synthétique premium, traitée anti-démangeaisons',
-      'Pré-étirées, pointes effilées',
-      'Longueur 26" (66 cm), lot de 3 paquets',
-      'Comptez 2 à 3 lots pour des box braids',
+      'Cheveux humains 100 % naturels',
+      'Paquet de 100 g',
+      'Comptez 3 paquets pour une tête complète',
+      'Se marie avec une closure ou une frontale',
     ],
-    options: { Couleur: ['Noir (1B)', 'Châtain (4)', 'Ombré cuivré (1B/30)', 'Blond (27)'] },
-    price: () => 1290,
+    options: { Longueur: inches(10, 26), Couleur: ['Noir naturel (1B)', 'Châtain (4)', 'Blond miel (27)'] },
+    price: (o) => 3500 + (length(o) - 10) * 400 + (o.Couleur === 'Noir naturel (1B)' ? 0 : 1000),
   },
 ]
 
