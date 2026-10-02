@@ -1,7 +1,7 @@
-# Maison Mèches — boutique en ligne
+# Human Hair — boutique en ligne
 
-- `client/` : le site (React + Tailwind CSS), sur le port 5173
-- `server/` : l'API (Node.js + Express + PostgreSQL), sur le port 5000
+- `client/` : le site (React + Tailwind CSS), sur le port 5180
+- `server/` : l'API (Node.js + Express + PostgreSQL), sur le port 5050
 
 ## Lancer en local
 
@@ -11,7 +11,7 @@ npm run db:setup     # crée les tables et charge le catalogue (une seule fois)
 npm run dev          # lance le site et l'API
 ```
 
-Ouvre ensuite http://localhost:5173
+Ouvre ensuite http://localhost:5180
 
 ## Personnaliser
 

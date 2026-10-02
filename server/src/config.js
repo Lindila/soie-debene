@@ -1,10 +1,10 @@
-export const PORT = Number(process.env.PORT) || 5000
+export const PORT = Number(process.env.PORT) || 5050
 // Vercel et Render fournissent automatiquement l'adresse publique du site.
 export const CLIENT_URL =
   process.env.CLIENT_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
   process.env.RENDER_EXTERNAL_URL ||
-  'http://localhost:5173'
+  'http://localhost:5180'
 
 /**
  * Un marché = une devise + un moyen de paiement + ses modes de livraison.
