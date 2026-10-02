@@ -10,7 +10,7 @@ import { categories, products, variantsOf } from './catalog.js'
 
 // Premier déploiement Vercel, avant d'avoir branché Neon : on n'empêche pas la
 // mise en ligne du site, on prévient juste.
-if (!process.env.DATABASE_URL) {
+if (!process.env.DATABASE_URL && !process.env.POSTGRES_URL) {
   console.warn('⚠ DATABASE_URL absent : base non initialisée. Branche Neon puis redéploie.')
   process.exit(0)
 }

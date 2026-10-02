@@ -1,10 +1,11 @@
 import pg from 'pg'
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL manquant dans server/.env')
+const DATABASE_URL = process.env.DATABASE_URL || process.env.POSTGRES_URL
+if (!DATABASE_URL) {
+  throw new Error('DATABASE_URL manquant : server/.env en local, ou base Neon branchée sur Vercel')
 }
 
-export const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL })
+export const pool = new pg.Pool({ connectionString: DATABASE_URL })
 
 export const query = (text, params) => pool.query(text, params)
 
