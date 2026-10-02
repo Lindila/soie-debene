@@ -52,7 +52,7 @@ export default function Footer() {
           <p className="eyebrow mb-5">Boutique</p>
           <ul className="space-y-3 text-sm text-cream/75">
             <li><Link to="/boutique?categorie=perruques" className="hover:text-gold">Perruques</Link></li>
-            <li><Link to="/boutique?categorie=tissages" className="hover:text-gold">Tissages</Link></li>
+            <li><Link to="/boutique?categorie=tissages" className="hover:text-gold">Mèches & tissages</Link></li>
             <li><Link to="/boutique" className="hover:text-gold">Toute la collection</Link></li>
           </ul>
         </div>

@@ -1,6 +1,7 @@
 /**
  * Catalogue Human Hair. Les prix sont provisoires : EUR en centimes, XAF en
- * francs CFA. Après modification : `npm run db:setup -- --reset`.
+ * francs CFA. Toute modification est appliquée en base par `npm run db:setup`,
+ * lancé automatiquement à chaque déploiement.
  */
 
 const inches = (from, to) =>
@@ -20,14 +21,34 @@ export const categories = [
   },
   {
     slug: 'tissages',
-    name: 'Tissages',
-    tagline: 'Paquets de cheveux naturels, toutes longueurs',
+    name: 'Mèches & tissages',
+    tagline: 'Pour tresses, crochet, tissage ou perruque',
     image: '/images/tissages-rayon.jpg',
   },
 ]
 
 /** `price(options)` renvoie le prix en centimes d'euro ; le prix FCFA en est déduit. */
 export const products = [
+  {
+    slug: 'kinky-human-hair-12',
+    name: 'Kinky Human Hair 12"',
+    category: 'tissages',
+    texture: 'Kinky',
+    badge: 'Nouveau',
+    featured: true,
+    images: ['/images/kinky-human-hair-2.jpg', '/images/kinky-human-hair-1.jpg'],
+    description:
+      'Des mèches naturelles à la texture kinky, pour un look unique. Douces, légères et durables, elles se coiffent en box braids, en crochet braids, en tissage classique ou en perruque.',
+    details: [
+      '100 % cheveux humains, qualité premium',
+      'Texture kinky naturelle, finitions soignées',
+      'Taille 12" (30 cm)',
+      'Pour box braids, crochet braids, tissage classique et perruques',
+      'Facile à coiffer et à entretenir',
+    ],
+    options: { Couleur: ['Noir naturel (1B)', 'Châtain (4)', 'Blond miel (27)'] },
+    price: (o) => 2900 + (o.Couleur === 'Noir naturel (1B)' ? 0 : 500),
+  },
   {
     slug: 'perruque-lisse-lace-frontal',
     name: 'Perruque Lisse Lace Frontal 13x4',

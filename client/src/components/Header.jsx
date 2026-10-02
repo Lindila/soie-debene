@@ -8,7 +8,7 @@ import MarketSwitch from './MarketSwitch.jsx'
 const NAV = [
   { to: '/boutique', label: 'Boutique' },
   { to: '/boutique?categorie=perruques', label: 'Perruques' },
-  { to: '/boutique?categorie=tissages', label: 'Tissages' },
+  { to: '/boutique?categorie=tissages', label: 'Mèches & tissages' },
   { to: '/contact', label: 'Contact' },
 ]
 

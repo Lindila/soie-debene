@@ -183,6 +183,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Nouveauté */}
+      <section className="container-x pt-24">
+        <Link
+          to="/produit/kinky-human-hair-12"
+          className="group grid overflow-hidden rounded-[2rem] bg-sand/70 md:grid-cols-2"
+        >
+          <div className="relative min-h-96 overflow-hidden">
+            <img
+              src="/images/kinky-human-hair-2.jpg"
+              alt="Mèches Kinky Human Hair 12 pouces"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-105"
+            />
+          </div>
+          <div className="flex flex-col justify-center p-10 sm:p-14 lg:p-20">
+            <p className="eyebrow">Nouveauté · Disponible maintenant</p>
+            <h2 className="mt-4 text-4xl leading-tight sm:text-5xl">
+              Kinky <em className="text-gold">Human Hair</em> 12"
+            </h2>
+            <p className="mt-5 max-w-md text-cocoa">
+              Des mèches naturelles à la texture kinky, douces, légères et durables. Une seule mèche pour tous tes
+              styles.
+            </p>
+            <ul className="mt-6 flex flex-wrap gap-2 text-xs">
+              {['Box braids', 'Crochet braids', 'Tissage', 'Perruque'].map((s) => (
+                <li key={s} className="rounded-full border border-espresso/15 bg-cream px-3 py-1.5">
+                  {s}
+                </li>
+              ))}
+            </ul>
+            <span className="btn-dark mt-9 self-start">
+              Je la veux <ArrowRight size={16} />
+            </span>
+          </div>
+        </Link>
+      </section>
+
       {/* Best-sellers */}
       <section className="container-x pt-24">
         <div className="mb-10 text-center">

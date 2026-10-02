@@ -24,7 +24,7 @@ shop.get('/categories', async (_req, res) => {
   const { rows } = await query(
     `SELECT c.slug, c.name, c.tagline, c.image, count(p.id)::int AS product_count
        FROM categories c LEFT JOIN products p ON p.category_id = c.id AND p.active
-      GROUP BY c.id ORDER BY c.position`,
+      GROUP BY c.id HAVING count(p.id) > 0 ORDER BY c.position`,
   )
   res.json(rows)
 })

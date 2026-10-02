@@ -121,7 +121,7 @@ export default function Product() {
                 key={imageIndex}
                 src={product.images[imageIndex]}
                 alt={product.name}
-                className="h-full w-full animate-fade-up object-cover"
+                className="h-full w-full animate-fade-up object-cover object-top"
               />
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function Product() {
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{product.name}</h1>
             <p className="mt-4 text-2xl">{price !== null ? money(price) : '—'}</p>
             {product.category === 'tissages' && (
-              <p className="mt-1 text-xs text-taupe">Prix par paquet de 100 g</p>
+              <p className="mt-1 text-xs text-taupe">Prix par paquet</p>
             )}
 
             <div className="mt-8 space-y-7">
